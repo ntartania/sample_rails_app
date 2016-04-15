@@ -1,0 +1,23 @@
+<p>
+  <strong> Title: </strong>
+  <%= @topic.title %>
+</p>
+
+<p>
+  <strong> Author: </strong>
+  <%= @topic.author %>
+</p>
+
+<p>
+  <strong> Content: </strong>
+  <%= @topic.content %>
+</p>
+
+<h2>Comments</h2>
+<%= render @topic.comments %>
+
+<h2>Add a comment</h2>
+<%= render 'comments/form' %>
+
+<%= link_to 'Back', topics_path %> 
+<%= link_to 'Edit', edit_topic_path(@topic)%>

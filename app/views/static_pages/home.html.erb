@@ -1,34 +1,36 @@
-<% if signed_in? %>
-  <div class="row">
-    <aside class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
-      <section>
-        <%= render 'shared/stats' %>
-      </section>
-      <section>
-        <%= render 'shared/micropost_form' %>
-      </section>
-    </aside>
-    <div class="span8">
-      <h3>Micropost Feed</h3>
-      <%= render 'shared/feed' %>
-    </div>
-  </div>
-<% else %>
-  <div class="center hero-unit">
-    <h1>Welcome to the Sample App</h1>
+<% provide(:title, "Home") %>
+<!DOCTYPE html>
+<html>
+  <body>
+    <% if logged_in? %>
+      <div class="row">
+        <aside class="col-md-4">
+          <section class="user_info">
+            <%= render 'shared/user_info' %>
+          </section>
+          <section class="stats">
+            <%= render 'shared/stats' %>
+          </section>
+          <section class="micropost_form">
+            <%= render 'shared/micropost_form' %>
+          </section>
+        </aside>
+        <div class="col-md-8">
+          <h3>News Feed</h3>
+          <%= render 'shared/feed' %>
+        </div>
+      </div>
+    <% else %>
+      <div class="center jumbotron">
+        <h1> Welcome to the SocialWiki App</h1>
+        <h2>
+          This is the home page for the
+           <a href="http://socialwiki.herokuapp.com/topics"> SocialWiki forum</a>
+        </h2>
+        <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+      </div>
+      <%= link_to image_tag("socialwiki-logo.png", alt: "SocialWiki Logo"), 'http://socialwiki.herokuapp.com/' %>
+    <% end %>
+  </body>
+</html>
 
-    <h2>
-      This is the home page for the
-      <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-      sample application.
-    </h2>
-
-    <%= link_to "Sign up now!", signup_path,
-                                class: "btn btn-large btn-primary" %>
-  </div>
-
-  <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
-<% end %>

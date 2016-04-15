@@ -1,0 +1,13 @@
+<%= form_for([@topic, @topic.comments.build]) do |t| %> 
+  
+  <p>
+    <%= t.label :text %><br>
+    <%= t.text_area :text %>
+  </p>
+
+  <p>
+    <%= t.submit%>
+  </p>
+<% end %>
+
+

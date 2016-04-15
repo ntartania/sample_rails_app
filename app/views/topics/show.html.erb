@@ -1,0 +1,23 @@
+<li class="topics">
+  <%= link_to gravatar_for(@topic.user, size: 50), @topic.user %>
+  
+  <span><%= @topic.title %></span>
+  <span class="user"><%= link_to @topic.user.name, @topic.user %></span>
+  <span class="content"><%= @topic.content %>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(@topic.created_at) %> ago.
+    <% if current_user?(@topic.user) %>
+      <%= link_to "delete", @topic, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %> 
+  </span>
+
+  <%= render @topic.comments %> 
+  
+</li>
+
+<h2>Add a comment</h2>
+<%= render 'comments/form' %>
+
+<%= link_to 'Back', topics_path %> 
+<%= link_to 'Edit', edit_topic_path(@topic)%>

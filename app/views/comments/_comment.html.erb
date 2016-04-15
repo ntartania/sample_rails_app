@@ -1,0 +1,27 @@
+<table style="table-layout: fixed; width: 75%">
+  <tr>
+    <td style="width: 10%"> <%= button_to 'UpVote', upvote_topic_comment_path(comment.topic, comment), method: :post%> 
+    </td>
+    <td>
+      <li class="comments">
+        <span><%= link_to gravatar_for(comment.user, size: 50), comment.user %></span>
+
+        <span class="user"><%= link_to comment.user.name, comment.user %></span>
+        <span class="content"><%= comment.text %>
+        <span class="timestamp">
+        Posted <%= time_ago_in_words(comment.created_at) %> ago.
+        <% if current_user?(comment.topic.user) %>
+        <%= link_to "delete", [comment.topic, comment], method: :delete, data: { confirm: "You sure?" } %>
+        <% end %>
+       </span>
+     </li>
+   </td> 
+  </tr>
+  <tr>
+    <td> <%= pluralize(comment.votes.count, "vote") %> </td>
+  </tr>
+  <tr>
+    <td> <%= button_to 'DownVote', downvote_topic_comment_path(comment.topic, comment), method: :post%> </td>  
+  </tr>
+ </table>
+
